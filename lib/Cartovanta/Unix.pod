@@ -1,0 +1,25 @@
+=head1 NAME
+
+Cartovanta::Unix - reserved Unix-specific backend namespace for CartoVanta
+
+=head1 SYNOPSIS
+
+  use Cartovanta::Unix;
+
+=head1 DESCRIPTION
+
+Cartovanta::Unix currently exists as a placeholder module reserving the
+Unix-specific backend namespace for future CartoVanta implementation.
+
+At present, it provides no public functions or methods.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2026 Sophia Elizabeth Shapira
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.
+
+See the F<LICENSE> file for the full license text.
+
+=cut

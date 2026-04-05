@@ -1,0 +1,115 @@
+=head1 NAME
+
+Cartovanta - Perl resource-access infrastructure for CartoVanta tools
+
+=head1 SYNOPSIS
+
+  use Cartovanta qw(
+    infile
+    rgval
+    onelzy
+    shell_captr
+    shell_qt
+    shell_quote
+    cr_resloc
+  );
+
+=head1 DESCRIPTION
+
+Cartovanta provides Perl utility functions for loading resource files,
+evaluating Perl code stored in strings or files when that code returns
+code-references, and constructing or executing Unix-shell command
+strings in support of CartoVanta tools.
+
+=head1 FUNCTIONS
+
+=head2 infile
+
+  my $text = infile($pathname);
+
+Loads the contents of a file into a Perl string.
+
+If called with no arguments, returns C<undef>.
+
+If the file cannot be opened, returns the empty string.
+
+=head2 rgval
+
+  my $result = rgval($code_string, @args);
+
+Takes as its first argument a Perl string to be evaluated with C<eval>.
+
+Any additional arguments are passed to the code-reference returned by
+that C<eval>.
+
+If the C<eval> does not return a code-reference, returns C<undef>.
+
+Otherwise, returns whatever is returned by the generated code-reference.
+
+=head2 onelzy
+
+  my $result = onelzy($pathname, @args);
+
+Takes as its first argument the pathname of a file whose contents are
+to be loaded as a Perl string and evaluated with C<eval>.
+
+Any additional arguments are passed to the code-reference returned by
+that C<eval>.
+
+If the file cannot be loaded, or if the C<eval> does not return a
+code-reference, returns C<undef>.
+
+Otherwise, returns whatever is returned by the generated code-reference.
+
+=head2 shell_captr
+
+  my $output = shell_captr(@args);
+
+Builds a shell command string from its arguments by way of C<shell_qt>,
+executes that command with backticks, chomps the trailing newline from
+the captured output, and returns the resulting string.
+
+=head2 shell_qt
+
+  my $command = shell_qt(@args);
+
+Builds a shell command string by quoting each argument with
+C<shell_quote> and separating the resulting quoted arguments with
+spaces.
+
+The returned string begins with a blank space and also ends with a
+blank space.
+
+=head2 shell_quote
+
+  my $quoted = shell_quote($string);
+
+Quotes a single string for use as one Unix-shell argument.
+
+Undefined values and empty strings are rendered as C<''>.
+
+Embedded single quotes are converted to the standard shell-safe
+sequence used for representing a literal single quote inside a
+single-quoted shell string.
+
+=head2 cr_resloc
+
+  my $result = cr_resloc(@args);
+
+Returns the captured output of:
+
+  cartovanta resloc ...
+
+with any additional arguments passed along as further command-line
+arguments.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2026 Sophia Elizabeth Shapira
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.
+
+See the F<LICENSE> file for the full license text.
+
+=cut
