@@ -14,6 +14,7 @@ our @EXPORT_OK = qw(
   shell_captr
   shell_qt
   shell_quote
+  cr_resloc
 );
 
 # Loads the contents of a file into a PERL string.
@@ -74,6 +75,7 @@ sub shell_captr {
   chomp($lc_ret);
   return $lc_ret;
 }
+
 sub shell_qt {
   my $lc_ret;
   my $lc_ech;
@@ -84,12 +86,17 @@ sub shell_qt {
   }
   return $lc_ret;
 }
+
 sub shell_quote {
   my $lc_strg;
   ($lc_strg) = @_;
   return "''" if !defined($lc_strg) || $lc_strg eq '';
   $lc_strg =~ s/'/'"'"'/g;
   return "'$lc_strg'";
+}
+
+sub cr_resloc {
+  return(shell_captr('cartovanta','resloc',@_));
 }
 
 
