@@ -3,6 +3,9 @@
 # it under the same terms as Perl itself.
 
 package Cartovanta;
+
+our $VERSION = '0.00_1';
+
 use strict;
 use warnings;
 use Exporter 'import';
