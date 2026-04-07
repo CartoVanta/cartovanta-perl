@@ -6,22 +6,36 @@ Cartovanta - Perl resource-access infrastructure for CartoVanta tools
 
   use Cartovanta qw(
     infile
-    rgval
-    onelzy
+    cr_eval_with_rg
+    cr_file_eval_with_rg
     shell_captr
     shell_qt
     shell_quote
     cr_resloc
+    cr_home_refresh
+    cr_settings
   );
 
 =head1 DESCRIPTION
 
-Cartovanta provides Perl utility functions for loading resource files,
+Cartovanta provides Perl utility functions for loading files,
 evaluating Perl code stored in strings or files when that code returns
-code-references, and constructing or executing Unix-shell command
-strings in support of CartoVanta tools.
+code references, constructing or executing Unix-shell command strings,
+and locating CartoVanta resources.
 
 =head1 FUNCTIONS
+
+=head2 cr_home_refresh
+
+  cr_home_refresh();
+
+Refreshes the module's stored value for the current user's home
+directory.
+
+If the C<HOME> environment variable is defined and nonempty, that value
+is used.
+
+Otherwise, the home directory is taken from C<(getpwuid($<))[7]>.
 
 =head2 infile
 
@@ -33,41 +47,43 @@ If called with no arguments, returns C<undef>.
 
 If the file cannot be opened, returns the empty string.
 
-=head2 rgval
+=head2 cr_eval_with_rg
 
-  my $result = rgval($code_string, @args);
+  my $result = cr_eval_with_rg($code_string, @args);
 
 Takes as its first argument a Perl string to be evaluated with C<eval>.
 
-Any additional arguments are passed to the code-reference returned by
+Any additional arguments are passed to the code reference returned by
 that C<eval>.
 
-If the C<eval> does not return a code-reference, returns C<undef>.
+If the C<eval> does not return a code reference, returns C<undef>.
 
-Otherwise, returns whatever is returned by the generated code-reference.
+Otherwise, returns whatever is returned by the generated code
+reference.
 
-=head2 onelzy
+=head2 cr_file_eval_with_rg
 
-  my $result = onelzy($pathname, @args);
+  my $result = cr_file_eval_with_rg($pathname, @args);
 
-Takes as its first argument the pathname of a file whose contents are
-to be loaded as a Perl string and evaluated with C<eval>.
+Loads a file with C<infile>, evaluates its contents by way of C<cr_eval_with_rg>,
+and, if a code reference results, invokes that code reference with any
+remaining arguments.
 
-Any additional arguments are passed to the code-reference returned by
-that C<eval>.
+If called with no arguments, returns C<undef>.
 
-If the file cannot be loaded, or if the C<eval> does not return a
-code-reference, returns C<undef>.
+If the file cannot be loaded, or if the C<eval> does not return a code
+reference, returns C<undef>.
 
-Otherwise, returns whatever is returned by the generated code-reference.
+Otherwise, returns whatever is returned by the generated code
+reference.
 
 =head2 shell_captr
 
   my $output = shell_captr(@args);
 
-Builds a shell command string from its arguments by way of C<shell_qt>,
-executes that command with backticks, chomps the trailing newline from
-the captured output, and returns the resulting string.
+Builds a shell command string from its arguments by way of
+C<shell_qt>, executes that command with backticks, chomps the trailing
+newline from the captured output, and returns the resulting string.
 
 =head2 shell_qt
 
@@ -77,8 +93,7 @@ Builds a shell command string by quoting each argument with
 C<shell_quote> and separating the resulting quoted arguments with
 spaces.
 
-The returned string begins with a blank space and also ends with a
-blank space.
+The returned string begins and ends with a blank space.
 
 =head2 shell_quote
 
@@ -94,14 +109,59 @@ single-quoted shell string.
 
 =head2 cr_resloc
 
-  my $result = cr_resloc(@args);
+  my $pathname = cr_resloc($type, $relative_path, @restrictions);
 
-Returns the captured output of:
+Searches for a CartoVanta resource and returns its pathname if found.
 
-  cartovanta resloc ...
+The first argument is the resource type.  At present, C<f> means a file
+and C<d> means a directory.
 
-with any additional arguments passed along as further command-line
-arguments.
+The second argument is the resource's relative path beneath each
+candidate resource directory.
+
+Any additional arguments may be array references specifying extra
+search restrictions.  Any argument that is not an array reference is
+ignored by the extra-test phase.
+
+If the module's auto-refresh setting is on, C<cr_home_refresh> is
+called before the search begins.
+
+If the environment variable C<CARTOVANTA_RES_PATH> is defined, its
+colon-separated directory list is searched first.
+
+After that, the function searches the default user-specific resource
+directory:
+
+  $_homedir/local/cartovanta-res
+
+If the resource is still not found, the function searches the default
+systemwide resource directory:
+
+  /usr/local/cartovanta-res
+
+The function returns the pathname of the first matching resource that
+passes the implemented checks.
+
+If no acceptable match is found, it returns C<undef>.
+
+=head2 cr_settings
+
+  my $ok = cr_settings(\%settings);
+
+Adjusts settings for the Cartovanta library.
+
+Its first argument must be a hash reference.
+
+If the first argument is not a hash reference, the function returns
+C<0>.
+
+At present, the recognized setting is C<refresh>.
+
+If C<refresh> is present and true, automatic refreshing of the stored
+home directory is turned on.
+
+If C<refresh> is present and false, automatic refreshing of the stored
+home directory is turned off.
 
 =head1 COPYRIGHT AND LICENSE
 
