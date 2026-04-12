@@ -23,6 +23,15 @@ evaluating Perl code stored in strings or files when that code returns
 code references, constructing or executing Unix-shell command strings,
 and locating CartoVanta resources.
 
+=head1 BACKWARD COMPATIBILITY
+
+For the project's backward-compatibility policy, see the section
+"Backward Compatibility Policy" in F<README.md>.
+
+In brief: interfaces present in the most recent stable release are
+intended to remain backward-compatible, while things added only in
+developer releases may still change before the next stable release.
+
 =head1 FUNCTIONS
 
 =head2 cr_home_refresh
