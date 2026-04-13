@@ -1,0 +1,49 @@
+=head1 NAME
+
+Cartovanta::Classy - Class-loading support for Cartovanta Perl resources
+
+=head1 SYNOPSIS
+
+  use Cartovanta::Classy qw(
+    # add exported functions here
+  );
+
+=head1 DESCRIPTION
+
+Cartovanta::Classy provides support for loading class-oriented
+Cartovanta Perl resources.
+
+These resources are not ordinary Perl modules loaded through Perl's
+native module system.
+
+Instead, they are loaded through Cartovanta machinery under ad-hoc
+package names and are expected to follow the contract documented by
+Cartovanta::Classy.
+
+=head1 FUNCTIONS
+
+=head2 [function_name_here]
+
+  # usage example here
+
+[Describe the function here.]
+
+=head1 BACKWARD COMPATIBILITY
+
+For the project's backward-compatibility policy, see the section
+"Backward Compatibility Policy" in F<README.md>.
+
+In brief: interfaces present in the most recent stable release are
+intended to remain backward-compatible, while things added only in
+developer releases may still change before the next stable release.
+
+=head1 COPYRIGHT AND LICENSE
+
+Copyright 2026 Sophia Elizabeth Shapira
+
+This library is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.
+
+See the F<LICENSE> file for the full license text.
+
+=cut

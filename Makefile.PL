@@ -17,5 +17,6 @@ WriteMakefile(
   PM           => {
     'lib/Cartovanta.pm'      => '$(INST_LIBDIR)/Cartovanta.pm',
     'lib/Cartovanta/Unix.pm' => '$(INST_LIBDIR)/Cartovanta/Unix.pm',
+    'lib/Cartovanta/Classy.pm' => '$(INST_LIBDIR)/Cartovanta/Classy.pm',
   },
 );
