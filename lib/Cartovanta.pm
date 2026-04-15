@@ -6,10 +6,29 @@ package Cartovanta;
 
 our $VERSION = '0.00_1';
 
+
+# Usual package imports:
 use strict;
 use warnings;
 use Exporter 'import';
-use Cartovanta::Unix;
+
+
+
+sub _backend_package {
+  if ( $^O eq 'MSWin32' ) { return('Cartovanta::Win32'); }
+  return('Cartovanta::Unix');
+}
+sub _load_backend {
+  my $lc_pkg;
+  $lc_pkg = _backend_package();
+  if ( !(eval "require $lc_pkg;") )
+  {
+    die "\nCould not load Cartovanta backend $lc_pkg.\n$@\n";
+  }
+  return($lc_pkg);
+}
+_load_backend();
+
 
 our @EXPORT_OK = qw(
   cr_alloc_get
@@ -36,12 +55,12 @@ my $_alloc_numid = 0; # ID-number of last allocated ad-hoc package name
 # Get value for `$_homedir`
 cr_home_refresh();
 sub cr_home_refresh {
-  return( Cartovanta::Unix::cr_home_refresh(@_) );
+  return( _backend_package()->cr_home_refresh(@_) );
 }
 
 
 sub shell_qt {
-  return( Cartovanta::Unix::shell_qt(@_) );
+  return( _backend_package()->shell_qt(@_) );
 }
 
 
@@ -130,7 +149,7 @@ sub shell_captr {
 }
 
 sub cr_resloc {
-  return( Cartovanta::Unix::cr_resloc(@_) );
+  return( _backend_package()->cr_resloc(@_) );
 }
 
 sub cr_settings {
@@ -138,7 +157,7 @@ sub cr_settings {
   # The argument must be a hashref.
   if ( ref($_[0]) ne 'HASH' ) { return 0; }
   
-  return( Cartovanta::Unix::cr_settings(@_) );
+  return( _backend_package()->cr_settings(@_) );
 }
 
 # Initialize the Ad-Hoc Package Namespace Allocator
