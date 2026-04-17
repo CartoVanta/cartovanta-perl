@@ -13,7 +13,7 @@ use warnings;
 use Exporter 'import';
 
 
-
+# BEGIN LOADING BACKEND
 sub _backend_package {
   if ( $^O eq 'MSWin32' ) { return('Cartovanta::Win32'); }
   return('Cartovanta::Unix');
@@ -28,19 +28,16 @@ sub _load_backend {
   return($lc_pkg);
 }
 _load_backend();
+# FINISH LOADING BACKEND
 
 
 our @EXPORT_OK = qw(
   cr_alloc_get
   cr_alloc_init
   cr_alloc_ready
-  cr_eval_with_rg
-  cr_file_eval_with_rg
   cr_home_refresh
   cr_pk_eval
-  cr_resloc
   cr_settings
-  infile
   shell_captr
   shell_qt
   slurp_file
@@ -72,7 +69,7 @@ sub slurp_file {
   my $lc_file;  # Pathname of the file to load
   my $lc_ret;   # File contents to be returned
   
-  if ( (scalar @_) < 1.5 ) { return undef; }
+  if ( (scalar @_) < 0.5 ) { return undef; }
   
   $lc_file = $_[0];
   if ( !(-f $lc_file) ) { return undef; }
@@ -88,57 +85,6 @@ sub slurp_file {
 }
 
 
-
-# Loads the contents of a file into a PERL string.
-sub infile {
-  my $lc_a;
-  my $lc_b;
-  if ( !@_ ) { return undef; }
-  $lc_a = '';
-  if ( open($lc_b,'<',$_[0]) )
-  {
-    local $/ = undef;
-    $lc_a = <$lc_b>;
-    close($lc_b);
-  }
-  return $lc_a;
-}
-
-# Takes as its first argument a PERL string to be `eval`ed.
-# Any additional arguments are passed to the code-reference
-# returned by that `eval`.
-# If the `eval` fails to return a code-reference, `undef` is
-# returned.
-# Otherwise, the return value is whatever is returned by the
-# generated code-reference.
-sub cr_eval_with_rg {
-  my $lc_code;
-  my $lc_bld;
-  if ( !@_ ) { return undef; }
-  $lc_code = shift(@_);
-  $lc_bld = eval($lc_code);
-  if ( ref($lc_bld) ne 'CODE' ) { return undef; }
-  return($lc_bld->(@_));
-}
-
-# Takes as its first argument the pathname of a file whose
-# contents are to be loaded as a PERL string and `eval`ed.
-# Any additional arguments are passed to the code-reference
-# returned by that `eval`.
-# If the file cannot be loaded, or if the `eval` fails to
-# return a code-reference, `undef` is returned.
-# Otherwise, the return value is whatever is returned by the
-# generated code-reference.
-sub cr_file_eval_with_rg {
-  my $lc_file;
-  my $lc_code;
-  if ( !@_ ) { return undef; }
-  $lc_file = shift(@_);
-  $lc_code = infile($lc_file);
-  return(cr_eval_with_rg($lc_code,@_));
-}
-
-
 sub shell_captr {
   my $lc_comd;
   my $lc_ret;
@@ -146,10 +92,6 @@ sub shell_captr {
   $lc_ret = `$lc_comd`;
   chomp($lc_ret);
   return $lc_ret;
-}
-
-sub cr_resloc {
-  return( _backend_package()->cr_resloc(@_) );
 }
 
 sub cr_settings {
