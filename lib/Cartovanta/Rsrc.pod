@@ -1,0 +1,11 @@
+package Cartovanta::Rsrc;
+
+=head1 NAME
+
+Cartovanta::Rsrc - pending documentation
+
+=head1 DESCRIPTION
+
+Documentation for Cartovanta::Rsrc has not yet been written.
+
+=cut
