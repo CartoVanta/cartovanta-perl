@@ -1,0 +1,5 @@
+=head1 NAME
+
+Cartovanta::Shell - placeholder documentation
+
+=cut

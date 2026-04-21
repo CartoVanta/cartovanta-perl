@@ -39,7 +39,6 @@ our @EXPORT_OK = qw(
   cr_pk_eval
   cr_settings
   shell_captr
-  shell_qt
   slurp_file
 );
 
@@ -53,11 +52,6 @@ my $_alloc_numid = 0; # ID-number of last allocated ad-hoc package name
 cr_home_refresh();
 sub cr_home_refresh {
   return( _backend_package()->cr_home_refresh(@_) );
-}
-
-
-sub shell_qt {
-  return( _backend_package()->shell_qt(@_) );
 }
 
 

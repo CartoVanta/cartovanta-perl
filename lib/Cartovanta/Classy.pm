@@ -137,4 +137,7 @@ sub cr_loadplf_raw {
   return($lc_ntv_ret);
 }
 
+sub cv_res_find {
+}
+
 1;
