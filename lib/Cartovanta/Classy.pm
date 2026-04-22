@@ -15,6 +15,7 @@ use Cartovanta qw(cr_pk_eval slurp_file);
 
 our @EXPORT_OK = qw(
   cr_loadplf_raw
+  cr_rslc_r
 );
 
 my $_by_fnom = {};
@@ -137,7 +138,20 @@ sub cr_loadplf_raw {
   return($lc_ntv_ret);
 }
 
-sub cv_res_find {
+sub cv_rslc_r {
+  my $lc_ret; # Prospective return value
+  
+  # First we create the object's starting data
+  $lc_ret = {
+    'path' => [],
+  };
+  
+  # Then we bless the object.
+  require Cartovanta::Rslc;
+  bless $lc_ret, 'Cartovanta::Rslc';
+  
+  # And we're done!
+  return $lc_ret;
 }
 
 1;

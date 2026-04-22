@@ -16,6 +16,8 @@ WriteMakefile(
   LICENSE      => 'perl',
   PM           => {
     'lib/Cartovanta.pm'      => '$(INST_LIBDIR)/Cartovanta.pm',
+    'lib/Cartovanta/Utl.pm' => '$(INST_LIBDIR)/Cartovanta/Utl.pm',
+    'lib/Cartovanta/Os_Spc.pm' => '$(INST_LIBDIR)/Cartovanta/Os_Spc.pm',
     'lib/Cartovanta/Unix.pm' => '$(INST_LIBDIR)/Cartovanta/Unix.pm',
     'lib/Cartovanta/Classy.pm' => '$(INST_LIBDIR)/Cartovanta/Classy.pm',
     'lib/Cartovanta/Shell.pm' => '$(INST_LIBDIR)/Cartovanta/Shell.pm',

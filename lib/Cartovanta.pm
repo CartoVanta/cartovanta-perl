@@ -21,7 +21,7 @@ sub _backend_package {
 sub _load_backend {
   my $lc_pkg;
   $lc_pkg = _backend_package();
-  if ( !(eval "require $lc_pkg;") )
+  if ( !(eval "require $lc_pkg; 1;") )
   {
     die "\nCould not load Cartovanta backend $lc_pkg.\n$@\n";
   }

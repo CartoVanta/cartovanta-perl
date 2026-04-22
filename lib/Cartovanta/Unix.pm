@@ -73,4 +73,55 @@ sub cr_home_refresh
   }
 }
 
+# This method conditionally refreshes the home
+# directory depending on whether or not the
+# preference says to and on whether or not the
+# home directory has previously been refreshed.
+sub qcr_home_refresh {
+  my $this;
+  
+  $this = shift(@_);
+  
+  if ( (!defined($_homedir)) || $_refresh_home )
+  {
+    $this->cr_home_refresh();
+  }
+  
+  return $_homedir;
+}
+
+# This method generates a list (in the form of an
+# arrayref) of directories to go into a path -- and
+# does it based on a resource-ID string.
+sub rsid_path {
+  my $this;
+  my @lc_set;
+  my $lc_each;
+  my $lc_hme;
+  
+  $this = shift(@_);
+  
+  # Query the homedir
+  $lc_hme = $this->qrc_home_refresh();
+  
+  # Return path is clear by default
+  @lc_set = ();
+  
+  # Add the local stuff.
+  foreach $lc_each (@_)
+  {
+    @lc_set = ( @lc_set,($lc_hme . '/local/' . $lc_each));
+  }
+  
+  # Add the systemwide stuff.
+  foreach $lc_each (@_)
+  {
+    @lc_set = (@lc_set,('/usr/local/' . $lc_each));
+  }
+  
+  # Wrap and return.
+  return [ @lc_set ];
+}
+
+
 1;
