@@ -23,6 +23,7 @@ WriteMakefile(
     'lib/Toolchartic/Shell.pm' => '$(INST_LIBDIR)/Toolchartic/Shell.pm',
     'lib/Toolchartic/Rsrc.pm' => '$(INST_LIBDIR)/Toolchartic/Rsrc.pm',
     'lib/Toolchartic/Rslc.pm' => '$(INST_LIBDIR)/Toolchartic/Rslc.pm',
+    'lib/Toolchartic/Resrg.pm' => '$(INST_LIBDIR)/Toolchartic/Resrg.pm',
     'lib/Toolchartic/R_Cvperlc.pm' => '$(INST_LIBDIR)/Toolchartic/R_Cvperlc.pm',
     'lib/Toolchartic/R_Cvperli.pm' => '$(INST_LIBDIR)/Toolchartic/R_Cvperli.pm',
   },
