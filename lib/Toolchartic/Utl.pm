@@ -7,6 +7,9 @@ our @EXPORT_OK = qw(
   require_str
 );
 
+# Designed to behave as much as possible like the
+# `require` keyword, except that it takes a string
+# rather than a bare literal.
 sub require_str{
   my $lc_pkg;
   
@@ -24,6 +27,8 @@ sub require_str{
   {
     die "\nCould not load module $lc_pkg.\n$@\n";
   }
+  
+  return $lc_pkg;
 }
 
 1;
