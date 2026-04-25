@@ -3,5 +3,5 @@ use warnings;
 use Test::More tests => 1;
 
 BEGIN {
-  use_ok('Cartovanta::Rslc');
+  use_ok('Toolchartic::Rslc');
 }

@@ -3,5 +3,5 @@ use warnings;
 use Test::More tests => 1;
 
 BEGIN {
-  use_ok('Cartovanta::Shell');
+  use_ok('Toolchartic::Shell');
 }

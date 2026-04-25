@@ -1,4 +1,4 @@
-package Cartovanta::Shell;
+package Toolchartic::Shell;
 use IPC::Open3;
 use IO::Select;
 use Symbol qw(gensym);
@@ -10,15 +10,15 @@ use Exporter 'import';
 
 # BEGIN LOADING BACKEND
 sub _backend_package {
-  if ( $^O eq 'MSWin32' ) { return('Cartovanta::Win32'); }
-  return('Cartovanta::Unix');
+  if ( $^O eq 'MSWin32' ) { return('Toolchartic::Win32'); }
+  return('Toolchartic::Unix');
 }
 sub _load_backend {
   my $lc_pkg;
   $lc_pkg = _backend_package();
   if ( !(eval "require $lc_pkg; 1;") )
   {
-    die "\nCould not load Cartovanta backend $lc_pkg.\n$@\n";
+    die "\nCould not load Toolchartic backend $lc_pkg.\n$@\n";
   }
   return($lc_pkg);
 }

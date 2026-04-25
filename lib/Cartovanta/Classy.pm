@@ -2,7 +2,7 @@
 # This library is free software; you may redistribute it and/or modify
 # it under the same terms as Perl itself.
 
-package Cartovanta::Classy;
+package Toolchartic::Classy;
 
 use strict;
 use warnings;
@@ -11,7 +11,7 @@ use Exporter 'import';
 use File::Basename;
 use Cwd 'abs_path';
 
-use Cartovanta qw(cr_pk_eval slurp_file);
+use Toolchartic qw(cr_pk_eval slurp_file);
 
 our @EXPORT_OK = qw(
   cr_loadplf_raw
@@ -21,9 +21,9 @@ our @EXPORT_OK = qw(
 my $_by_fnom = {};
 my $_by_pack = {};
 
-# Loads and evaluates a `Cartovanta`-loaded Perl
+# Loads and evaluates a `Toolchartic`-loaded Perl
 # file -- but doesn't do any of the extra processing
-# for any specific subtypes of `Cartovanta`-loaded
+# for any specific subtypes of `Toolchartic`-loaded
 # files, as that's the job for other functions that
 # wrap around this one.
 #
@@ -38,7 +38,7 @@ my $_by_pack = {};
 # This function returns a hashref with the following
 # fields:
 #   'package' -- The ad-hoc package-name generated
-#         for this resource (by `Cartovanta`'s package
+#         for this resource (by `Toolchartic`'s package
 #         name allocator). `undef` if the process
 #         failed before even getting a package-name.
 #   'evret' -- The result of the `eval` done on the
@@ -147,8 +147,8 @@ sub cv_rslc_r {
   };
   
   # Then we bless the object.
-  require Cartovanta::Rslc;
-  bless $lc_ret, 'Cartovanta::Rslc';
+  require Toolchartic::Rslc;
+  bless $lc_ret, 'Toolchartic::Rslc';
   
   # And we're done!
   return $lc_ret;

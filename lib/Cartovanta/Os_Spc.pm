@@ -1,4 +1,4 @@
-package Cartovanta::Os_Spc;
+package Toolchartic::Os_Spc;
 
 sub pick {
   my $this;
@@ -6,16 +6,16 @@ sub pick {
   
   $this = shift(@_);
   
-  $lc_ret = 'Cartovanta::Unix';
+  $lc_ret = 'Toolchartic::Unix';
   
   if ( $^O eq 'MSWin32' )
   {
-    $lc_ret = 'Cartovanta::Win32';
+    $lc_ret = 'Toolchartic::Win32';
   }
   
   if ( !(eval('require ' . $lc_ret . ";\n\n1;\n")) )
   {
-    die("\nCould not load Cartovanta backend " . $lc_ret . ".\n" . $@ . "\n");
+    die("\nCould not load Toolchartic backend " . $lc_ret . ".\n" . $@ . "\n");
   }
   return $lc_ret;
 }

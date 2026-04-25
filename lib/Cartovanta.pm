@@ -2,7 +2,7 @@
 # This library is free software; you may redistribute it and/or modify
 # it under the same terms as Perl itself.
 
-package Cartovanta;
+package Toolchartic;
 
 our $VERSION = '0.00_1';
 
@@ -15,15 +15,15 @@ use Exporter 'import';
 
 # BEGIN LOADING BACKEND
 sub _backend_package {
-  if ( $^O eq 'MSWin32' ) { return('Cartovanta::Win32'); }
-  return('Cartovanta::Unix');
+  if ( $^O eq 'MSWin32' ) { return('Toolchartic::Win32'); }
+  return('Toolchartic::Unix');
 }
 sub _load_backend {
   my $lc_pkg;
   $lc_pkg = _backend_package();
   if ( !(eval "require $lc_pkg; 1;") )
   {
-    die "\nCould not load Cartovanta backend $lc_pkg.\n$@\n";
+    die "\nCould not load Toolchartic backend $lc_pkg.\n$@\n";
   }
   return($lc_pkg);
 }

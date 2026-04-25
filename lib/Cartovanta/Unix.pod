@@ -1,14 +1,14 @@
 =head1 NAME
 
-Cartovanta::Unix - reserved Unix-specific backend namespace for CartoVanta
+Toolchartic::Unix - reserved Unix-specific backend namespace for CartoVanta
 
 =head1 SYNOPSIS
 
-  use Cartovanta::Unix;
+  use Toolchartic::Unix;
 
 =head1 DESCRIPTION
 
-Cartovanta::Unix currently exists as a placeholder module reserving the
+Toolchartic::Unix currently exists as a placeholder module reserving the
 Unix-specific backend namespace for future CartoVanta implementation.
 
 At present, it provides no public functions or methods.

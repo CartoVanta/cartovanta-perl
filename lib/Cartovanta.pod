@@ -1,10 +1,10 @@
 =head1 NAME
 
-Cartovanta - Perl resource-access infrastructure for CartoVanta tools
+Toolchartic - Perl resource-access infrastructure for CartoVanta tools
 
 =head1 SYNOPSIS
 
-  use Cartovanta qw(
+  use Toolchartic qw(
     infile
     cr_eval_with_rg
     cr_file_eval_with_rg
@@ -18,7 +18,7 @@ Cartovanta - Perl resource-access infrastructure for CartoVanta tools
 
 =head1 DESCRIPTION
 
-Cartovanta provides Perl utility functions for loading files,
+Toolchartic provides Perl utility functions for loading files,
 evaluating Perl code stored in strings or files when that code returns
 code references, constructing or executing Unix-shell command strings,
 and locating CartoVanta resources.
@@ -157,7 +157,7 @@ If no acceptable match is found, it returns C<undef>.
 
   my $ok = cr_settings(\%settings);
 
-Adjusts settings for the Cartovanta library.
+Adjusts settings for the Toolchartic library.
 
 Its first argument must be a hash reference.
 

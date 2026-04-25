@@ -1,5 +1,5 @@
 =head1 NAME
 
-Cartovanta::Os_Spec - placeholder documentation
+Toolchartic::Os_Spec - placeholder documentation
 
 =cut

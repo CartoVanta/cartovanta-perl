@@ -1,24 +1,24 @@
 =head1 NAME
 
-Cartovanta::Classy - Class-loading support for Cartovanta Perl resources
+Toolchartic::Classy - Class-loading support for Toolchartic Perl resources
 
 =head1 SYNOPSIS
 
-  use Cartovanta::Classy qw(
+  use Toolchartic::Classy qw(
     # add exported functions here
   );
 
 =head1 DESCRIPTION
 
-Cartovanta::Classy provides support for loading class-oriented
-Cartovanta Perl resources.
+Toolchartic::Classy provides support for loading class-oriented
+Toolchartic Perl resources.
 
 These resources are not ordinary Perl modules loaded through Perl's
 native module system.
 
-Instead, they are loaded through Cartovanta machinery under ad-hoc
+Instead, they are loaded through Toolchartic machinery under ad-hoc
 package names and are expected to follow the contract documented by
-Cartovanta::Classy.
+Toolchartic::Classy.
 
 =head1 FUNCTIONS
 

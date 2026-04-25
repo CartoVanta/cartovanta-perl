@@ -1,9 +1,9 @@
-package Cartovanta::Rslc;
+package Toolchartic::Rslc;
 use strict;
 use warnings;
-use Cartovanta::Os_Spc;
+use Toolchartic::Os_Spc;
 
-my $_backpack = Cartovanta::Os_Spc->pick();
+my $_backpack = Toolchartic::Os_Spc->pick();
 
 sub p_rsid {
   my $this;

@@ -1,4 +1,4 @@
-package Cartovanta::Rsrc;
+package Toolchartic::Rsrc;
 
 
 1;
