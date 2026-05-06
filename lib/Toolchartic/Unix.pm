@@ -93,6 +93,9 @@ sub qcr_home_refresh {
 # This method generates a list (in the form of an
 # arrayref) of directories to go into a path -- and
 # does it based on a resource-ID string.
+# The resultant array calls for all specified directories
+# to be searched first under `~/local` and then under
+# `/usr/local`.
 sub rsid_path {
   my $this;
   my @lc_set;
